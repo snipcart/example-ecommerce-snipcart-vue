@@ -15,8 +15,6 @@ RUN echo "$NPMRC" > ~/.npmrc && \
   npm install --no-progress --ignore-optional --loglevel=error && \
   rm ~/.npmrc
 
-  ##  npm run build && \
-# Set correct user for files
 COPY . .
 
 # Set environment
