@@ -12,13 +12,13 @@ pipeline:
     pull: true
     secrets: [docker_auth, npmrc]
     commands:
-    - ci-docker-build eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue
+    - ci-docker-build eu.gcr.io/sanity-cloud/swag
 
   publish:
     image: eu.gcr.io/sanity-cloud/ci
     secrets: [docker_auth]
     commands:
-    - ci-docker-push eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue
+    - ci-docker-push eu.gcr.io/sanity-cloud/swag
     when:
       event: push
 
@@ -26,8 +26,8 @@ pipeline:
     image: eu.gcr.io/sanity-cloud/ci
     secrets: [kubernetes_auth, sentry_auth_token, crossbrowser_auth]
     commands:
-    - ci-kubernetes-deploy eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue production:default kubernetes/production/
-    - ci-sentry-notify example-ecommerce-snipcart-vue production
+    - ci-kubernetes-deploy eu.gcr.io/sanity-cloud/swag production:default kubernetes/production/
+      # - ci-sentry-notify swag production
     when:
       branch: sanity-swag-store
       event: push
