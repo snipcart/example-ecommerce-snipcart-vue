@@ -18,7 +18,7 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-        - image: eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue
+        - image: eu.gcr.io/sanity-cloud/swag
           imagePullPolicy: Always
           name: swag
           ports:
