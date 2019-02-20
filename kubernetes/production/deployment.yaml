@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: swag
+  labels:
+    app: swag
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: swag
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - image: eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue
+          imagePullPolicy: Always
+          name: swag
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: NODE_ENV
+              value: production
+          readinessProbe:
+            httpGet:
+              port: 3000
+              path: /
+            initialDelaySeconds: 3
+            timeoutSeconds: 5
+          resources:
+            requests:
+              cpu: 0.05
+              memory: '80M'
+          lifecycle:
+            preStop:
+              exec:
+                # Hack: wait for kube-proxy to remove endpoint before exiting
+                command: ['sleep', '3']

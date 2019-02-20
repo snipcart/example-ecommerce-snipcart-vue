@@ -1,0 +1,41 @@
+branches:
+- sanity-swag-store
+
+clone:
+  clone:
+    image: plugins/git
+    depth: 1
+
+pipeline:
+  build:
+    image: eu.gcr.io/sanity-cloud/ci
+    pull: true
+    secrets: [docker_auth, npmrc]
+    commands:
+    - ci-docker-build eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue
+
+  publish:
+    image: eu.gcr.io/sanity-cloud/ci
+    secrets: [docker_auth]
+    commands:
+    - ci-docker-push eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue
+    when:
+      event: push
+
+  deploy-production:
+    image: eu.gcr.io/sanity-cloud/ci
+    secrets: [kubernetes_auth, sentry_auth_token, crossbrowser_auth]
+    commands:
+    - ci-kubernetes-deploy eu.gcr.io/sanity-cloud/example-ecommerce-snipcart-vue production:default kubernetes/production/
+    - ci-sentry-notify example-ecommerce-snipcart-vue production
+    when:
+      branch: sanity-swag-store
+      event: push
+
+  notify:
+    image: eu.gcr.io/sanity-cloud/ci
+    secrets: [postmark_server_token, slack_webhook]
+    commands:
+    - ci-notify
+    when:
+      status: [failure, success]
