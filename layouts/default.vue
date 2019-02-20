@@ -4,13 +4,13 @@
       <router-link :to="'/'" class="logo">
         <AppLogo />
       </router-link>
-      <nav>
+      <!-- <nav>
         <ul>
           <li><router-link :to="'/'">Home</router-link></li>
           <li><router-link :to="'/category'">Categories</router-link></li>
           <li><router-link :to="'/vendor'">Vendors</router-link></li>
         </ul>
-      </nav>
+      </nav> -->
       <div ref="cart" class="cart">
         <a href="#" class="snipcart-checkout">
           <div class="snipcart-summary">
@@ -22,38 +22,12 @@
       </div>
     </header>
 
-    <section class="sidebar">
-      <ul class="categories">
-        <li
-          v-for="category in this.$store.state.globalData.categoryTree"
-          v-if="category.slug"
-          :key="category._id"
-          class="category"
-        >
-          <router-link :to="'/category/' + category.slug.current">
-            {{ category.title }}
-          </router-link>
-          <ul v-if="category.children" class="sub-categories">
-            <li
-              v-for="subCategory in category.children"
-              v-if="subCategory.slug"
-              :key="category._id + subCategory._id"
-            >
-              <router-link :to="'/category/' + subCategory.slug.current">
-                {{ subCategory.title }}
-              </router-link>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
     <section class="content">
       <nuxt />
     </section>
 
     <div class="footer">
-      A Sanity E-commerce example frontend in vue.js / nuxt.js
+      Sanity swag store
     </div>
   </div>
 </template>

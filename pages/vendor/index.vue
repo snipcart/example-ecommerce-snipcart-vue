@@ -4,7 +4,7 @@
       <h1 class="title">
         Vendors
       </h1>
-      <ul class="vendors">
+      <!-- <ul class="vendors">
         <li
           v-for="vendor in this.$store.state.globalData.vendors"
           :key="vendor._id"
@@ -26,7 +26,7 @@
             </div>
           </router-link>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </section>
 </template>

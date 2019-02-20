@@ -1,27 +1,29 @@
 <template>
   <section>
-    <div>
-      <h1 class="title">
-        <a href="http://sanity.io">
-          <AppLogo />
-        </a>
-      </h1>
-      <h2 class="subtitle">
-        A minimal front-end for the sanity e-commerce example schema, written on
-        <a href="https://vuejs.org/">vue.js</a> and
-        <a href="https://nuxtjs.org/">nuxt.js</a> with a client-side shopping
-        cart from <a href="https://snipcart.com/">Snipcart</a>.
-      </h2>
+    <div v-show="products">
+      <h3>Products</h3>
+      <ProductList :products="products" />
     </div>
   </section>
 </template>
 
 <script>
+import sanity from "~/sanity.js"
 import AppLogo from "~/components/AppLogo"
+import ProductList from "~/components/ProductList"
+const query = `
+  {
+    "products": *[_type == "product"]
+  }
+`
 
 export default {
+  asyncData() {
+    return sanity.fetch(query)
+  },
   components: {
-    AppLogo
+    AppLogo,
+    ProductList
   }
 }
 </script>

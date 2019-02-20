@@ -4,7 +4,7 @@
       <h1 class="title">
         Categories
       </h1>
-      <ul class="categories">
+      <!-- <ul class="categories">
         <li
           v-for="category in this.$store.state.globalData.categories"
           :key="category._id"
@@ -16,7 +16,7 @@
             {{ category.title }}
           </router-link>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </section>
 </template>

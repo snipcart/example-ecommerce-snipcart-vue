@@ -36,7 +36,7 @@ export default {
         "data-autopop": "false",
         // Change me. Read more at http://snipcart.com
         "data-api-key":
-          "ODRkNmJhZDktOTk5YS00Y2Y1LTk5Y2ItMTkzNTlkZTYxNzhmNjM2NTk1NTI2OTgyMTc1MTUy"
+          "YjZlZDY2NWQtODY3Zi00NTY5LWI5MTMtNjFkODZlNTdiYjAyNjM2ODU0NzE1MjgzOTgyMDM4"
       }
     ]
   },
@@ -47,7 +47,7 @@ export default {
   /*
    ** Load categories and vendors
    */
-  plugins: ["~/plugins/globalData"],
+  // plugins: ["~/plugins/globalData"],
   /*
    ** Global CSS
    */

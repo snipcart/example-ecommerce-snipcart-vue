@@ -1,22 +1,5 @@
 <template>
   <section :key="product._id">
-    <ul class="categories">
-      <li>
-        <router-link
-          :to="'/vendor/' + product.vendor.slug.current"
-          class="vendor"
-        >
-          <SanityImage :image="product.vendor.logo" class="vendorLogo" />
-        </router-link>
-        <!-- {{ product.vendor.title }} -->
-      </li>
-      <li v-for="category in product.categories" :key="category._id">
-        <router-link :to="'/category/' + category.slug.current">
-          {{ category.title }}
-        </router-link>
-      </li>
-    </ul>
-
     <div class="container">
       <div>
         <h1 class="title">{{ product.title }}</h1>
@@ -25,12 +8,12 @@
           <div class="price-and-button">
             <div class="price">{{ formattedPrice }}</div>
             <button
+              :data-item-id="product._id"
               :data-item-name="product.title"
               :data-item-price="product.defaultProductVariant.price"
-              :data-item-id="product._id"
+              :data-item-url="`/product/${product.slug.current}`"
               type="button"
               class="snipcart-add-item"
-              data-item-url="/"
             >
               Add to cart
             </button>
