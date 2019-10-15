@@ -4,6 +4,10 @@ export default {
   /*
    ** Headers of the page
    */
+  env: {
+    // Change me. Read more at http://snipcart.com
+    snipcartApiKey: "ODRkNmJhZDktOTk5YS00Y2Y1LTk5Y2ItMTkzNTlkZTYxNzhmNjM2NTk1NTI2OTgyMTc1MTUy"
+  },
   head: {
     title: "ecommerce-frontend",
     meta: [
@@ -19,24 +23,15 @@ export default {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       // Snipcart styling
       {
-        href: "https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css",
+        href: "https://cdn.snipcart.com/themes/v3.0.0-beta.4.1/default/snipcart.css",
         type: "text/css",
         rel: "stylesheet"
       }
     ],
     script: [
-      // jQuery. Only needed for snipcart
-      {
-        src: "https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
-      },
       // Snipcart js
       {
-        src: "https://cdn.snipcart.com/scripts/2.0/snipcart.js",
-        id: "snipcart",
-        "data-autopop": "false",
-        // Change me. Read more at http://snipcart.com
-        "data-api-key":
-          "ODRkNmJhZDktOTk5YS00Y2Y1LTk5Y2ItMTkzNTlkZTYxNzhmNjM2NTk1NTI2OTgyMTc1MTUy"
+        src: "https://cdn.snipcart.com/themes/v3.0.0-beta.4.1/default/snipcart.js "
       }
     ]
   },

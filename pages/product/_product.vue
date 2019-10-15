@@ -28,9 +28,9 @@
               :data-item-name="product.title"
               :data-item-price="product.defaultProductVariant.price"
               :data-item-id="product._id"
+              :data-item-url="url"
               type="button"
               class="snipcart-add-item"
-              data-item-url="/"
             >
               Add to cart
             </button>
@@ -85,6 +85,9 @@ export default {
   computed: {
     formattedPrice: function() {
       return numeral(this.product.defaultProductVariant.price).format("$0.00")
+    },
+    url() {
+      return this.$nuxt.$route.path
     },
     bodyHtml: function() {
       if (!this.product || !this.product.body) {

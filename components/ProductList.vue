@@ -47,9 +47,9 @@
             :data-item-name="product.title"
             :data-item-price="product.defaultProductVariant.price"
             :data-item-id="product._id"
+            :data-item-url="url"
             type="button"
             class="snipcart-add-item"
-            data-item-url="/"
           >
             Add to cart
           </button>
@@ -84,6 +84,11 @@ export default {
   data(context) {
     return {
       displayView: context._props.view || "grid"
+    }
+  },
+  computed: {
+    url() {
+      return this.$nuxt.$route.path
     }
   },
   methods: {

@@ -55,6 +55,8 @@
     <div class="footer">
       A Sanity E-commerce example frontend in vue.js / nuxt.js
     </div>
+
+    <div id="snipcart" :data-api-key="snipcartApiKey" hidden />
   </div>
 </template>
 
@@ -65,6 +67,11 @@ export default {
   components: {
     AppLogo
   },
+  computed: {
+    snipcartApiKey() {
+      return process.env.snipcartApiKey
+    }
+  },
   mounted() {
     if (!window.Snipcart) {
       throw new Error(
@@ -73,7 +80,7 @@ export default {
     }
     const cart = this.$refs.cart
     let timeoutId
-    window.Snipcart.subscribe("item.adding", () => {
+    window.Snipcart.events.on("item.added", () => {
       cart.classList.add("pop")
       clearTimeout(timeoutId)
       timeoutId = setTimeout(() => {
